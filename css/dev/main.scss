@@ -1,0 +1,509 @@
+/*------------ Set up ------------*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+$regular: 'Inovato-Regular', 'Helvetica Neue', 'Helvetica', sans-serif;
+$italic: 'Inovato-Italic', 'Helvetica Neue', 'Helvetica', sans-serif;
+$bold: 'Inovato-Bold', 'Helvetica Neue', 'Helvetica', sans-serif;
+$bolditalic: 'Inovato-BoldItalic', 'Helvetica Neue', 'Helvetica', sans-serif;
+$display: 'InovatoDisplay-Bold', 'Helvetica Neue', 'Helvetica', sans-serif;
+
+$frontgrey: #fcfcfc;
+$backgrey: #262626;
+
+// $backgrey: #fcfcfc;
+// $frontgrey: #262626;
+$cure: #ffcc33;
+
+$break-mobile: 480px;
+$break-tablet: 768px;
+$break-desktop: 1140px;
+$break-HD: 1600px;
+
+@mixin breakpoint($media) {
+  @if $media == pm {
+    @media only screen and (max-width: $break-mobile - 1) { @content; }
+  }
+  @else if $media == lm {
+    @media only screen and (min-width: $break-mobile) and (max-width: $break-tablet - 1) { @content; }
+  }
+  @else if $media == t {
+    @media only screen and (min-width: $break-tablet) and (max-width: $break-desktop - 1) { @content; }
+  }
+  @else if $media == l {
+    @media only screen and (min-width: $break-desktop) and (max-width: $break-HD - 1) { @content; }
+  }
+  @else if $media == xl {
+    @media only screen and (min-width: $break-HD) { @content; }
+  }
+}
+
+
+/*------------ Plugins ------------*/
+
+/*------------ Typography ------------*/
+@font-face {
+  font-family: 'Inovato-Regular';
+  src: url('../font/Inovato-Regular.eot');
+  src: url('../font/Inovato-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../font/Inovato-Regular.woff2') format('woff2'),
+       url('../font/Inovato-Regular.woff') format('woff'),
+       url('../font/Inovato-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inovato-Italic';
+  src: url('../font/Inovato-Italic.eot');
+  src: url('../font/Inovato-Italic.eot?#iefix') format('embedded-opentype'),
+       url('../font/Inovato-Italic.woff2') format('woff2'),
+       url('../font/Inovato-Italic.woff') format('woff'),
+       url('../font/Inovato-Italic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inovato-Bold';
+  src: url('../font/Inovato-Bold.eot');
+  src: url('../font/Inovato-Bold.eot?#iefix') format('embedded-opentype'),
+       url('../font/Inovato-Bold.woff2') format('woff2'),
+       url('../font/Inovato-Bold.woff') format('woff'),
+       url('../font/Inovato-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Inovato-BoldItalic';
+  src: url('../font/Inovato-BoldItalic.eot');
+  src: url('../font/Inovato-BoldItalic.eot?#iefix') format('embedded-opentype'),
+       url('../font/Inovato-BoldItalic.woff2') format('woff2'),
+       url('../font/Inovato-BoldItalic.woff') format('woff'),
+       url('../font/Inovato-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'InovatoDisplay-Bold';
+  src: url('../font/InovatoDisplay-Bold.eot');
+  src: url('../font/InovatoDisplay-Bold.eot?#iefix') format('embedded-opentype'),
+       url('../font/InovatoDisplay-Bold.woff2') format('woff2'),
+       url('../font/InovatoDisplay-Bold.woff') format('woff'),
+       url('../font/InovatoDisplay-Bold.ttf') format('truetype');
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: $display;
+}
+
+h1 {
+	font-size: 3 / 1.2 * 1rem;
+	line-height: 3rem;
+
+	@include breakpoint(lm) {
+	  font-size: 2.5 / 1.2 * 1rem;
+	  line-height: 2.5rem;
+	}
+	@include breakpoint(pm) {
+	  font-size: 2 / 1.2 * 1rem;
+	  line-height: 2rem;
+	}
+}
+
+p {
+	font-size: 1 / 1.4 * 1rem;
+	line-height: 1rem;
+	margin-bottom: 1rem;
+
+	em {
+		font-family: $italic;
+	}
+
+	b {
+		font-family: $bold;
+	}
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+}
+
+/*------------ Tools ------------*/
+.group {
+  *zoom: 1;
+  &:before,
+  &:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+/*------------ General ------------*/
+// html {
+// 	min-height: 100%;
+// 	height: 100%;
+// }
+
+html, body {
+  background: linear-gradient(90deg, #FF0000 10%, #0000FF 90%); /* W3C */
+	background-color: $backgrey;
+	font-family: $regular;
+	font-size: 23px;
+	line-height: 1rem;
+	color: $frontgrey;
+	-webkit-text-size-adjust: 100%;
+
+	@include breakpoint(pm) {
+	  font-size: 20px;
+	}
+}
+
+/*------------ Specific ------------*/
+body {
+	position: relative;
+	padding: 2rem 40px;
+
+	@include breakpoint(pm) {
+	  padding: 2rem 30px;
+	}
+
+	&.fix {
+		background: none;
+	  // background: linear-gradient(90deg, #136a8a 10%, #267871 90%); /* W3C */      
+	}
+
+	&:before {
+		background: linear-gradient(90deg, #FF0000 10%, #0000FF 90%); /* W3C */
+		content: "";
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -1;
+		opacity: 1;
+		transition: opacity 0.8s ease-out;
+	}
+
+	&.fix:before {
+		opacity: 0;
+	}
+
+	&:after {
+		background: linear-gradient(90deg, #C04848 10%, #480048 90%); /* W3C */  
+		content: "";
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: -2;
+	}
+}
+
+header {
+	margin-bottom: 2rem;
+	
+	svg {
+		height: 4rem;
+
+		@include breakpoint(lm) {
+		  height: 2.5rem;
+		}
+
+		@include breakpoint(pm) {
+		  height: 3rem;
+		}
+	}
+
+	#logo {
+		fill: $frontgrey;
+	}
+}
+
+section {
+	width: auto;
+	max-width: 680px;
+	margin-bottom: 1.5rem;
+}
+
+.evil {
+	position: relative;
+
+	h1 {
+		margin-bottom: 1rem;
+		line-height: 1.2rem;
+		transition: line-height 0.8s ease-out;
+
+		&:after {
+			content: url(../img/arrow.svg);
+			width: 32px;
+			height: 38px;
+			opacity: 1;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			transition: opacity 0.8s ease-out;
+		}
+
+		@include breakpoint(lm) {
+		  line-height: 1rem;
+		}
+
+		@include breakpoint(pm) {
+		  line-height: 1rem;
+		}
+
+		.by {
+			color: #b77b7b;
+		}
+		
+		.of {
+			color: #00f0ff;
+		}
+
+		.bad {
+			color: #bada55;
+		}
+
+		.design {
+			color: #de5182;
+		}
+
+		.color {
+			transition: color 0.8s ease-out;
+
+			&.fix {
+				color: $frontgrey;
+			}
+		}
+
+		&.fix {
+			line-height: 3rem;
+
+			&:after {
+				opacity: 0;
+			}
+
+			@include breakpoint(lm) {
+			  line-height: 2.5rem;
+			}
+			@include breakpoint(pm) {
+			  line-height: 2rem;
+			}
+		}
+	}
+
+	svg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 3;
+		opacity: 1;
+		stroke-dasharray: 2400;
+    stroke-dashoffset: 2400;
+    transition: stroke-dashoffset 0.8s ease-out, opacity 0.2s ease-out;
+
+    @include breakpoint(t) {
+      opacity: 0;
+    }
+    @include breakpoint(lm) {
+      opacity: 0;
+    }
+    @include breakpoint(pm) {
+      opacity: 0;
+    }
+
+    &:hover {
+    	stroke-dashoffset: 0;
+    	cursor: pointer;
+    }
+
+    &.fix {
+    	stroke-dashoffset: 0;
+    	opacity: 0;
+    	cursor: default;
+    }
+	}
+}
+
+.content {
+	.signup {
+		font-family: $bold;
+	}
+}
+
+.form {
+	border: 4px solid $frontgrey;
+	padding: 1.5rem 30px;
+
+	@include breakpoint(lm) {
+	  padding: 1em 15px;
+	}
+	@include breakpoint(pm) {
+	  padding: 1em 15px;
+	}
+
+	form {
+		font-family: $bold;
+	}
+	
+	label {
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+
+	input {
+		display: block;
+		font-family: $bold;
+		color: $frontgrey;
+		appearance: none;
+		font-size: 1.5 / 1.2 * 1rem;
+		background: none;
+		border: none;
+		border-bottom: 4px solid $frontgrey;
+		width: 100%;
+		outline: none;
+
+		@include breakpoint(pm) {
+		  font-size: 1 / 1.2 * 1rem;
+		}
+	}
+
+	::placeholder {
+		color: rgba($frontgrey, 0.5);
+	}
+
+	select {
+		font-size: 1 / 1.4 * 1rem;
+	}
+
+	.country {
+		margin-bottom: 1.5rem;
+	}
+
+	button {
+		appearance: none;
+		font-family: $bold;
+		width: 100%;
+		height: 2rem;
+		font-size: 1 / 1.2 * 1rem;
+		line-height: 2rem;
+		color: $backgrey;
+		background: $frontgrey;
+		box-shadow: none;
+		outline: none;
+		border: none;
+		text-transform: uppercase;
+		transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+
+		&:hover {
+			background: $cure;
+			color: $frontgrey;
+			cursor: pointer;
+		}
+	}
+}
+
+footer {
+	position: relative;
+
+	p {
+		margin-bottom: 0;
+	}
+
+	a {
+		font-family: $display;
+		text-transform: uppercase;
+		color: $frontgrey;
+	}
+
+	@include breakpoint(lm) {
+	  text-align: center;
+	}
+	@include breakpoint(pm) {
+	  text-align: center;
+	}
+}
+
+.closing-icon {
+	position: absolute;
+	bottom: 2rem;
+	right: 40px;
+
+	svg {
+		height: 2rem;
+
+		@include breakpoint(lm) {
+		  height: 2.5rem;
+		  display: block;
+		  margin: 1rem auto 0;
+		}
+		@include breakpoint(pm) {
+		  height: 2.5rem;
+		  display: block;
+		  margin: 1rem auto 0;
+		}
+	}
+
+	#icon {
+		fill: $frontgrey;
+	}
+
+	@include breakpoint(lm) {
+	  position: relative;
+	  bottom: auto;
+	  right: auto;
+	}
+	@include breakpoint(pm) {
+	  position: relative;
+	  bottom: auto;
+	  right: auto;
+	}
+}
