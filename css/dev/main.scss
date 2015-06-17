@@ -459,6 +459,12 @@ footer {
 	}
 
 	a {
+		font-family: $italic;
+		// text-transform: uppercase;
+		color: $frontgrey;
+	}
+
+	a.pwdo {
 		font-family: $display;
 		text-transform: uppercase;
 		color: $frontgrey;
@@ -478,7 +484,7 @@ footer {
 	right: 40px;
 
 	svg {
-		height: 2rem;
+		height: 3rem;
 
 		@include breakpoint(lm) {
 		  height: 2.5rem;
