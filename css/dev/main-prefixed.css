@@ -303,6 +303,9 @@ footer {
   footer p {
     margin-bottom: 0; }
   footer a {
+    font-family: 'Inovato-Italic', 'Helvetica Neue', 'Helvetica', sans-serif;
+    color: #fcfcfc; }
+  footer a.pwdo {
     font-family: 'InovatoDisplay-Bold', 'Helvetica Neue', 'Helvetica', sans-serif;
     text-transform: uppercase;
     color: #fcfcfc; }
@@ -318,7 +321,7 @@ footer {
   bottom: 2rem;
   right: 40px; }
   .closing-icon svg {
-    height: 2rem; }
+    height: 3rem; }
     @media only screen and (min-width: 480px) and (max-width: 767px) {
       .closing-icon svg {
         height: 2.5rem;
