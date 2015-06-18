@@ -23,6 +23,7 @@ $(document).ready(function() {
 	var evilSvg = $("section.evil svg");
 
 	evilSvg.click(function(){
+		ga('send', 'event', 'AnimationFix', 'click');
 		evilSvg.attr("class", "fix");
 		setInterval(function() {
 			$("section.evil h1").addClass("fix");
@@ -34,4 +35,8 @@ $(document).ready(function() {
 			$("body").addClass("fix")
 		},1900);
 	});
+
+	$("#speak-link").click(function(){
+		ga('send', 'event', 'SpeakerLink', 'click');
+	})
 });
